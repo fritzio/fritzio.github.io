@@ -90,7 +90,6 @@ body {
 .backdrop-blur-sm { backdrop-filter: blur(4px); }
 .underline { text-decoration: underline; }
 .underline-offset-2 { text-underline-offset: 2px; }
-.grayscale { filter: grayscale(100%); }
 .opacity-75 { opacity: 0.75; }
 .text-center { text-align: center; }
 .text-xs { font-size: 0.75rem; }
@@ -169,57 +168,6 @@ body {
     text-decoration-thickness: 2px;
 }
 
-/* Hover color for individual 'b'/'B' letters */
-.hover-b {
-    transition: color 0.15s ease;
-}
-.hover-b:hover {
-    color: #ffd400; /* yellow */
-}
-
-/* Flying bee emoji created on clicking a 'b' */
-.flying-bee {
-    position: fixed;
-    z-index: 9999;
-    pointer-events: none;
-    font-size: 1.2em;
-    line-height: 1;
-    will-change: transform, opacity;
-    animation: bee-fly 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes bee-fly {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 1;
-    }
-    20% {
-        transform: translate(calc(var(--dx) * 0.2), calc(var(--dy) * 0.2)) rotate(90deg);
-    }
-    40% {
-        transform: translate(calc(var(--dx) * 0.4 + 6px), calc(var(--dy) * 0.4 - 4px)) rotate(180deg);
-    }
-    60% {
-        transform: translate(calc(var(--dx) * 0.6 - 4px), calc(var(--dy) * 0.6 + 6px)) rotate(270deg);
-    }
-    80% {
-        transform: translate(calc(var(--dx) * 0.8 + 3px), calc(var(--dy) * 0.8 - 3px)) rotate(360deg);
-    }
-    100% {
-        transform: translate(var(--dx), var(--dy)) rotate(450deg);
-        opacity: 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .flying-bee {
-        animation: bee-fade 250ms ease-out forwards;
-    }
-    @keyframes bee-fade {
-        to { opacity: 0; }
-    }
-}
-
 /* Header styles */
 #main-header {
     position: fixed;
@@ -241,22 +189,21 @@ body {
 /* Header grid layout */
 .header-grid {
     display: grid;
-    grid-template-columns: auto 1fr minmax(0, auto);
+    grid-template-columns: 1fr minmax(0, auto);
     grid-template-rows: auto auto;
     grid-template-areas:
-        "logo title controls"
-        "logo nav controls";
+        "title controls"
+        "nav controls";
     align-items: center;
     column-gap: 1rem;
 }
 
-.header-logo { grid-area: logo; align-self: center; }
 .header-title { grid-area: title; align-self: center; }
 .header-nav { grid-area: nav; align-self: center; }
-.header-controls { 
-    grid-area: controls; 
-    justify-self: end; 
-    max-width: 100%; 
+.header-controls {
+    grid-area: controls;
+    justify-self: end;
+    max-width: 100%;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -269,27 +216,6 @@ body {
     #main-header {
         padding: 1rem 2rem 0.5rem 2rem; /* Match main content sm:px-8 */
     }
-}
-
-.group:hover .grayscale {
-    filter: none;
-}
-
-/* Make logo clickable with cursor pointer and subtle hover effect */
-#main-header a[href="#"] {
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-#main-header a[href="#"]:hover svg {
-    transform: scale(1.05);
-    transition: opacity 0.2s ease;
-}
-
-#main-header a[href="#"]:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 4px;
-    border-radius: 4px;
 }
 
 /* Navigation styles - Desktop */
@@ -658,7 +584,7 @@ button:focus-visible {
         height: 100vh;
     }
     
-    /* Logo and title spacing on mobile */
+    /* Title spacing on mobile */
     #main-header .text-xl {
         font-size: 1.125rem;
     }
@@ -705,9 +631,6 @@ button:focus-visible {
         white-space: nowrap;
     }
 
-    /* Add spacing after logo on mobile */
-    .header-logo { margin-right: 0.5rem; }
-
     /* Enlarge hamburger icon visuals on mobile */
     #toggle-navigation-menu svg {
         width: 24px;
@@ -736,13 +659,6 @@ button:focus-visible {
     /* Reduce first section top padding to avoid excessive gap under fixed header */
     #about {
         padding-top: 1rem !important;
-    }
-    
-    /* Better logo visibility and size */
-    #main-header svg {
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-        height: 4rem !important; /* Increase from 3.5rem to 4rem */
-        width: 2.4rem !important;  /* Increase from 2.1rem to 2.4rem, maintaining aspect ratio */
     }
 }
 
@@ -1014,98 +930,6 @@ button:focus-visible {
     
     .publication-tags {
         justify-content: center;
-    }
-}
-
-/* Party Hat Explosion Animation Styles */
-.party-hat {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    width: 40px;
-    height: 40px;
-    opacity: 1;
-    transform-origin: center;
-}
-
-.party-hat svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-@keyframes partyHatExplosion {
-    0% {
-        opacity: 1;
-        transform: scale(0.5) rotate(0deg);
-    }
-    20% {
-        opacity: 1;
-        transform: scale(1.2) rotate(72deg);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.8) rotate(360deg);
-    }
-}
-
-.party-hat.exploding {
-    animation: partyHatExplosion 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-/* Logo pulse animation for party mode */
-.logo-party-pulse {
-    animation: partyPulse 0.6s ease-out;
-}
-
-@keyframes partyPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Confetti-like sparkles */
-.party-sparkle {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    width: 8px;
-    height: 8px;
-    background: var(--color-accent);
-    border-radius: 50%;
-    opacity: 1;
-}
-
-@keyframes sparkleExplosion {
-    0% {
-        opacity: 1;
-        transform: scale(0) rotate(0deg);
-    }
-    20% {
-        opacity: 1;
-        transform: scale(1.5) rotate(180deg);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.5) rotate(720deg);
-    }
-}
-
-.party-sparkle.exploding {
-    animation: sparkleExplosion 1.5s ease-out forwards;
-}
-
-/* Smaller party hats on mobile */
-@media (max-width: 768px) {
-    .party-hat {
-        width: 30px;
-        height: 30px;
     }
 }
 
