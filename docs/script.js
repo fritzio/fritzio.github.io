@@ -1,53 +1,3 @@
-// Theme management
-class ThemeManager {
-    constructor() {
-        this.theme = localStorage.getItem('theme') || 'light';
-        this.init();
-    }
-
-    init() {
-        // Set initial theme
-        this.setTheme(this.theme);
-        
-        // Add event listener to theme toggle button
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => this.toggleTheme());
-        }
-    }
-
-    setTheme(theme) {
-        this.theme = theme;
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        
-        // Update theme toggle button aria-label
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.setAttribute('aria-label', 
-                theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
-            );
-            // Update icon visibility explicitly to avoid any flash
-            const sun = themeToggle.querySelector('.sun-icon');
-            const moon = themeToggle.querySelector('.moon-icon');
-            if (sun && moon) {
-                if (theme === 'dark') {
-                    sun.style.display = 'block';
-                    moon.style.display = 'none';
-                } else {
-                    sun.style.display = 'none';
-                    moon.style.display = 'block';
-                }
-            }
-        }
-    }
-
-    toggleTheme() {
-        const newTheme = this.theme === 'light' ? 'dark' : 'light';
-        this.setTheme(newTheme);
-    }
-}
-
 // Mobile navigation management
 class MobileNavigation {
     constructor() {
@@ -479,7 +429,6 @@ class MarkdownLoader {
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
-    new ThemeManager();
     new MobileNavigation();
     new SmoothScroll();
     
@@ -512,18 +461,6 @@ document.addEventListener('visibilitychange', () => {
         document.body.classList.add('paused');
     } else {
         document.body.classList.remove('paused');
-    }
-});
-
-// Add keyboard navigation support
-document.addEventListener('keydown', (e) => {
-    // Handle keyboard navigation for theme toggle
-    if (e.key === 't' && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault();
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.click();
-        }
     }
 });
 

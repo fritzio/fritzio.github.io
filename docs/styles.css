@@ -4,7 +4,7 @@
 }
 
 html {
-    color-scheme: light dark;
+    color-scheme: light;
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
 }
@@ -21,19 +21,6 @@ html {
     --color-border: #e5e7eb;
     --color-card-bg: rgba(255, 255, 255, 0.8);
     --color-shadow: rgba(0, 0, 0, 0.1);
-}
-
-/* Dark theme colors */
-[data-theme="dark"] {
-    --color-global-bg: oklch(23.64% 0.0045 248);
-    --color-global-text: oklch(83.54% 0 264);
-    --color-link: oklch(70.44% 0.1133 349);
-    --color-accent: #5ff26b;
-    --color-accent-2: oklch(94.66% 0 0);
-    --color-quote: oklch(94.8% 0.106 136.49);
-    --color-border: #374151;
-    --color-card-bg: rgba(31, 41, 55, 0.8);
-    --color-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* Base typography */
@@ -421,45 +408,6 @@ body {
 #toggle-navigation-menu[aria-expanded="true"]  svg:first-of-type { display: none;  opacity: 0; }
 #toggle-navigation-menu[aria-expanded="true"]  svg:last-of-type  { display: block; opacity: 1; }
 
-/* Theme toggle styles */
-#theme-toggle {
-    background-color: color-mix(in srgb, var(--color-accent-2) 20%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-accent-2) 30%, transparent);
-    transition: opacity 0.2s ease;
-    z-index: 50;
-    position: relative;
-}
-
-#theme-toggle:hover {
-    background-color: color-mix(in srgb, var(--color-accent-2) 30%, transparent);
-    transform: scale(1.05);
-}
-
-/* Theme icon visibility */
-[data-theme="dark"] .sun-icon {
-    display: block;
-}
-
-[data-theme="dark"] .moon-icon {
-    display: none;
-}
-
-[data-theme="light"] .sun-icon {
-    display: none;
-}
-
-[data-theme="light"] .moon-icon {
-    display: block;
-}
-
-:root .sun-icon {
-    display: none;
-}
-
-:root .moon-icon {
-    display: block;
-}
-
 /* Prose styles (typography) */
 .prose {
     color: var(--color-global-text);
@@ -767,16 +715,14 @@ button:focus-visible {
     }
 
     /* Larger touch targets */
-    #theme-toggle,
     #toggle-navigation-menu {
         min-width: 44px;
         min-height: 44px;
         padding: 0.5rem;
     }
-    
+
     /* Better touch feedback */
-    #toggle-navigation-menu:active,
-    #theme-toggle:active {
+    #toggle-navigation-menu:active {
         transform: scale(0.95);
     }
     
@@ -801,8 +747,7 @@ button:focus-visible {
 }
 
 /* Prevent text selection on interactive elements */
-#toggle-navigation-menu,
-#theme-toggle {
+#toggle-navigation-menu {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
@@ -837,11 +782,6 @@ button:focus-visible {
     .mobile-nav-menu a.active:first-child {
         border-left: none !important;
     }
-}
-
-/* Animation for theme transitions */
-html {
-    transition: opacity 0.2s ease;
 }
 
 /* Loading spinner */
