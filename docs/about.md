@@ -1,8 +1,9 @@
+# About
+
 <div class="about-header">
-  <img src="assets/profile.jpg" alt="Portrait" class="about-avatar" width="160" height="160" loading="lazy" />
-  <div class="about-header-content">
-    <h1 class="title">Hi I'm J!</h1>
-    <div class="about-socials" style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;margin-top:0.5rem;">
+  <div class="about-photo">
+    <img src="assets/profile.jpg" alt="Fabian Fritz" class="about-avatar" width="160" height="160" loading="lazy" />
+    <div class="about-socials" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.6rem;margin-top:0.75rem;">
   <a href="https://scholar.google.com/citations?user=vAXcR18AAAAJ&hl=en" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;color:var(--color-accent-2);">
     <svg viewBox="0 0 24 24" role="img" aria-hidden="true" style="width:20px;height:20px;opacity:0.9;" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
       <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/>
@@ -23,9 +24,8 @@
   </a>
     </div>
   </div>
+  <div class="about-header-content">
+    <p>I'm a research scientist at the [Chair of Aerodynamics and Fluid Mechanics (AER)](https://www.epc.ed.tum.de/aer/startseite/) at the Technical University of Munich (TUM). My work centers on the development, implementation, and validation of mesh-free hydrodynamics methods for engineering applications.</p>
+    <p>My research interests include advancing next-generation computational fluid dynamics (CFD) through exascale parallelism using shared- and distributed-memory acceleration, hardware-agnostic portable programming models, and automatic differentiation for gradient-based optimization. I aim to develop scalable, high-performance simulation frameworks that enable more efficient, accurate predictions in science and engineering.</p>
+  </div>
 </div>
-
-
-I'm a research scientist at the [Chair of Aerodynamics and Fluid Mechanics (AER)](https://www.epc.ed.tum.de/aer/startseite/) at the Technical University of Munich (TUM). My work centers on the development, implementation, and validation of mesh-free hydrodynamics methods for engineering applications.
-
-My research interests include advancing next-generation computational fluid dynamics (CFD) through exascale parallelism using shared- and distributed-memory acceleration, hardware-agnostic portable programming models, and automatic differentiation for gradient-based optimization. I aim to develop scalable, high-performance simulation frameworks that enable more efficient, accurate predictions in science and engineering.

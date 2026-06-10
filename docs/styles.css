@@ -198,7 +198,30 @@ body {
     column-gap: 1rem;
 }
 
-.header-title { grid-area: title; align-self: center; }
+.header-title { grid-area: title; align-self: center; min-width: 0; }
+
+.header-title-text {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.2;
+    min-width: 0;
+}
+
+.header-tagline {
+    font-size: 1rem;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+    .header-tagline {
+        display: none;
+    }
+}
 .header-nav { grid-area: nav; align-self: center; }
 .header-controls {
     grid-area: controls;
@@ -379,22 +402,30 @@ body {
 /* About section layout */
 .about-header {
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
+    align-items: flex-start;
+    gap: 1.5rem;
     flex-wrap: nowrap;
     margin-top: 0.25rem;
     margin-bottom: 1rem;
 }
 
+.about-photo {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
 .about-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 9999px;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
     flex-shrink: 0;
-    border: 2px solid var(--color-border);
     box-shadow: 0 2px 10px color-mix(in srgb, var(--color-shadow) 50%, transparent);
     background-color: var(--color-border);
+}
+
+.about-socials a {
+    font-size: 0.875rem;
 }
 
 .about-header-content {
@@ -403,22 +434,21 @@ body {
     gap: 0.25rem;
 }
 
-/* Reduce default heading top margin inside about header to better center with avatar */
-.about-header .title {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-}
-
 @media (max-width: 640px) {
     .about-header {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
+    .about-photo {
+        align-items: center;
+    }
+    .about-socials {
+        align-items: center !important;
+    }
     .about-avatar {
-        width: 88px;
-        height: 88px;
-        margin-top: 1.5rem; /* Add padding above the avatar on mobile */
+        width: 170px;
+        height: 170px;
     }
     .about-header-content {
         align-items: center;
