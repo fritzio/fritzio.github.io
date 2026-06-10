@@ -35,13 +35,6 @@
 </div>
 
 
+I'm a research scientist at the [Chair of Aerodynamics and Fluid Mechanics (AER)](https://www.epc.ed.tum.de/aer/startseite/) at the Technical University of Munich (TUM). My work centers on the development, implementation, and validation of mesh-free hydrodynamics methods for engineering applications.
 
-I'm a 2nd year **DPhil student in Machine Learning at the University of Oxford**, supervised by Jakob Foerster and focusing on AI Security, Safety, and Interpretability. I'm best known for my **NeurIPS 2025 Spotlight paper AgentBreeder**, which explores evolutionary automated red team and blue team scaffold generation.
-
-I'm currently working on **[Infusion](https://arxiv.org/abs/2602.09987)** - a framework for shaping model behavior by editing training data via influence functions. I'm participating in **Neel Nanda's MATS 10.0 Exploration Phase** and recently served as a **Teaching Assistant for ARENA 7.0** (Mechanistic Interpretability week).
-
-Previously, I was a **Research Scientist Intern at Spotify** and worked with **UK AISI on agentic scaffolds for Inspect** as part of their Bounty Programme. I was also the founding Research Scientist at Convergence (acquired by Salesforce for est. $200M), contributing to Proxy, a state-of-the-art multimodal web agent with 100k+ users.
-
-I'm a member of LISA (London Initiative for Safe AI) and enjoy playing trumpet in a funk band, running bouldering socials, and helping new climbers get certified.
-
-P.S. There are some easter eggs on this website - find one and drop the emoji in your email subject line!
+My research interests include advancing next-generation computational fluid dynamics (CFD) through exascale parallelism using shared- and distributed-memory acceleration, hardware-agnostic portable programming models, and automatic differentiation for gradient-based optimization. I aim to develop scalable, high-performance simulation frameworks that enable more efficient, accurate predictions in science and engineering.
