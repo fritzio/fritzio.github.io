@@ -25,7 +25,8 @@ python -m http.server 8000 -d docs/
 ## Structure
 
 - `docs/index.html` - Main page
-- `docs/*.md` - Content (about, publications, resume)
+- `docs/*.md` - Content (about, publications, resources, gallery, resume)
+- `docs/assets/gallery/` - CFD images/videos for the Gallery section (see its README)
 - `docs/styles.css` - Styling
 - `docs/script.js` - Functionality
 

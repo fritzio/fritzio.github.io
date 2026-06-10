@@ -210,7 +210,7 @@ class LazyImageLoader {
 // Markdown content loader
 class MarkdownLoader {
     constructor() {
-        this.sections = ['about', 'news', 'publications', 'resources', 'resume'];
+        this.sections = ['about', 'news', 'publications', 'resources', 'gallery', 'resume'];
         this.init();
     }
 
@@ -311,17 +311,122 @@ class MarkdownLoader {
     }
 }
 
+// Gallery lightbox for CFD images and videos
+class GalleryLightbox {
+    constructor() {
+        this.lightbox = document.getElementById('gallery-lightbox');
+        this.content = document.getElementById('gallery-lightbox-content');
+        this.caption = document.getElementById('gallery-lightbox-caption');
+        this.init();
+    }
+
+    init() {
+        if (!this.lightbox || !this.content) return;
+
+        // Open lightbox when a gallery item is activated
+        document.addEventListener('click', (e) => {
+            const closeBtn = e.target.closest('#gallery-lightbox-close');
+            if (closeBtn) {
+                this.close();
+                return;
+            }
+
+            // Click on the backdrop (not the inner content) closes the lightbox
+            if (e.target === this.lightbox) {
+                this.close();
+                return;
+            }
+
+            const item = e.target.closest('.gallery-item');
+            if (item && !item.classList.contains('gallery-placeholder')) {
+                this.open(item);
+            }
+        });
+
+        // Keyboard support: Enter/Space opens, Escape closes
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.lightbox.classList.contains('active')) {
+                this.close();
+                return;
+            }
+
+            if ((e.key === 'Enter' || e.key === ' ') && document.activeElement?.classList.contains('gallery-item')) {
+                e.preventDefault();
+                this.open(document.activeElement);
+            }
+        });
+
+        // Preview videos on hover/focus, pause when not focused
+        document.addEventListener('mouseover', (e) => {
+            const item = e.target.closest('.gallery-item[data-type="video"]');
+            const video = item?.querySelector('video');
+            if (video) video.play().catch(() => {});
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            const item = e.target.closest('.gallery-item[data-type="video"]');
+            if (item && !item.contains(e.relatedTarget)) {
+                const video = item.querySelector('video');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            }
+        });
+    }
+
+    open(item) {
+        const type = item.dataset.type;
+        const src = item.dataset.src;
+        const caption = item.dataset.caption || '';
+
+        if (!src) return;
+
+        this.content.innerHTML = '';
+
+        let media;
+        if (type === 'video') {
+            media = document.createElement('video');
+            media.src = src;
+            media.controls = true;
+            media.autoplay = true;
+            media.loop = true;
+            media.playsInline = true;
+        } else {
+            media = document.createElement('img');
+            media.src = src;
+            media.alt = caption;
+        }
+
+        this.content.appendChild(media);
+        this.caption.textContent = caption;
+        this.lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        const video = this.content.querySelector('video');
+        if (video) video.pause();
+
+        this.lightbox.classList.remove('active');
+        this.content.innerHTML = '';
+        this.caption.textContent = '';
+        document.body.style.overflow = '';
+    }
+}
+
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
     new MobileNavigation();
     new SmoothScroll();
-    
+
     // Make NavigationHighlight available globally for smooth scroll integration
     window.navigationHighlightInstance = new NavigationHighlight();
-    
+
     new LazyImageLoader();
     new MarkdownLoader();
+    new GalleryLightbox();
 
     // Add loading state management
     document.body.classList.add('loaded');
