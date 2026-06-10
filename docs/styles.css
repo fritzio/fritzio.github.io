@@ -176,10 +176,7 @@ body {
     transform: translateX(-50%);
     max-width: 57.6rem; /* Same as max-w-3xl */
     width: 100%;
-    background-color: color-mix(in srgb, var(--color-global-bg) 95%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+    background-color: var(--color-global-bg);
     z-index: 100;
     padding: 1rem 1rem 0.5rem 1rem; /* Match main content px-4 */
 }
