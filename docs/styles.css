@@ -962,6 +962,83 @@ button:focus-visible {
     }
 }
 
+/* Project card styles */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--color-shadow);
+}
+
+.project-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.project-title {
+    margin: 0 !important;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.prose .project-title {
+    margin-top: 0 !important;
+    margin-bottom: 0;
+}
+
+.project-dates {
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: color-mix(in srgb, var(--color-accent-2) 65%, transparent);
+    white-space: nowrap;
+}
+
+.project-link {
+    color: var(--color-accent-2);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.project-link:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.project-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-global-text);
+    opacity: 0.9;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.tag-github {
+    background-color: color-mix(in srgb, #6b7280 15%, transparent);
+    border-color: #6b7280;
+    color: #6b7280;
+}
+
 /* ============================= */
 /* Resume Timeline Component     */
 /* ============================= */
