@@ -721,7 +721,7 @@ button:focus-visible {
         background-color: transparent !important;
         color: var(--color-accent) !important;
         text-decoration: underline !important;
-        text-underline-offset: 4px !important;
+        text-underline-offset: 2px !important;
         /* Keep vertical dividers visible even when active */
         border-left: 1px solid var(--color-accent) !important;
     }

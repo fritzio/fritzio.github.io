@@ -119,6 +119,7 @@ class NavigationHighlight {
     constructor() {
         this.sections = [];
         this.navLinks = [];
+        this.observer = null;
         this.init();
     }
 
@@ -126,36 +127,43 @@ class NavigationHighlight {
         // Get all sections and navigation links
         this.sections = document.querySelectorAll('section[id]');
         this.navLinks = document.querySelectorAll('#navigation-menu a[href^="#"]');
-        
+
         if (this.sections.length > 0 && this.navLinks.length > 0) {
-            // Set initial active state based on URL hash only
-            this.setInitialActiveState();
-            
-            // Handle hash changes (but no scroll-based highlighting)
-            window.addEventListener('hashchange', () => {
-                this.handleHashChange();
+            this.setupObserver();
+
+            // Re-align the watch band if the header height or viewport changes
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => this.setupObserver(), 200);
             });
         }
     }
 
-    setInitialActiveState() {
-        const hash = window.location.hash;
-        if (hash && hash !== '#') {
-            const targetId = hash.substring(1);
-            this.highlightNavLink(targetId);
-        }
-        // No default active state - only highlight when there's a hash in URL
-    }
+    setupObserver() {
+        // Watch a thin band just below the fixed header so the link for the
+        // section currently under that band is highlighted as the user scrolls
+        const header = document.getElementById('main-header');
+        const headerHeight = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+        const topOffset = headerHeight + 8;
+        const bottomMargin = Math.max(window.innerHeight - topOffset - 1, 0);
 
-    handleHashChange() {
-        const hash = window.location.hash;
-        if (hash && hash !== '#') {
-            const targetId = hash.substring(1);
-            this.highlightNavLink(targetId);
-        } else {
-            // Clear all active states when there's no hash
-            this.clearAllActiveStates();
+        if (this.observer) {
+            this.observer.disconnect();
         }
+
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.highlightNavLink(entry.target.id);
+                }
+            });
+        }, {
+            rootMargin: `-${topOffset}px 0px -${bottomMargin}px 0px`,
+            threshold: 0
+        });
+
+        this.sections.forEach(section => this.observer.observe(section));
     }
 
     highlightNavLink(activeId) {
@@ -171,14 +179,6 @@ class NavigationHighlight {
             activeLink.classList.add('active');
             activeLink.setAttribute('aria-current', 'page');
         }
-    }
-
-    // Method to clear all active states (useful for debugging)
-    clearAllActiveStates() {
-        this.navLinks.forEach(link => {
-            link.classList.remove('active');
-            link.removeAttribute('aria-current');
-        });
     }
 }
 
