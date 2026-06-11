@@ -402,9 +402,9 @@ body {
 /* About section layout */
 .about-header {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
-    flex-wrap: nowrap;
     margin-top: 0.25rem;
     margin-bottom: 1rem;
 }
@@ -412,6 +412,7 @@ body {
 .about-photo {
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex-shrink: 0;
 }
 
@@ -426,24 +427,15 @@ body {
 .about-header-content {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    text-align: justify;
     gap: 0.25rem;
 }
 
 @media (max-width: 640px) {
-    .about-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .about-photo {
-        align-items: center;
-    }
     .about-avatar {
         width: 170px;
         height: 170px;
-    }
-    .about-header-content {
-        align-items: center;
     }
 }
 
@@ -985,6 +977,7 @@ button:focus-visible {
     line-height: 1.5;
     color: var(--color-global-text);
     opacity: 0.9;
+    text-align: justify;
 }
 
 .project-tags {
