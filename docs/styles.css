@@ -420,10 +420,6 @@ body {
     background-color: var(--color-border);
 }
 
-.about-socials a {
-    font-size: 0.875rem;
-}
-
 .about-header-content {
     display: flex;
     flex-direction: column;
@@ -438,9 +434,6 @@ body {
     }
     .about-photo {
         align-items: center;
-    }
-    .about-socials {
-        align-items: center !important;
     }
     .about-avatar {
         width: 170px;
