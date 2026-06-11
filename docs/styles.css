@@ -387,12 +387,15 @@ body {
 }
 
 .prose a {
-    color: var(--color-link);
-    text-decoration: underline;
+    color: var(--color-global-text);
+    font-weight: 700;
+    text-decoration: none;
     text-underline-offset: 2px;
 }
 
 .prose a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
     text-decoration-thickness: 2px;
 }
 
